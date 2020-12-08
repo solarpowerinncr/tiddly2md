@@ -8,9 +8,8 @@ Converts a TiddlyWiki to individual markdown files.
 
 ## Instructions
 
-1. Install the [ExportTiddlersPlugin](http://www.tiddlytools.com/#ExportTiddlersPlugin).
-2. Export wiki as CSV file.
-3. Run `tiddly2md.py` on the CSV file.
+1. Export wiki as CSV file.
+2. Run `tiddly2md.py` on the CSV file.
 
 	python tiddly2md.py export.csv
 
