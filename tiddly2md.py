@@ -72,9 +72,9 @@ def sanitize(value):
 
     :param value: string
     """
-    value = unicode(value)
-    value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
-    value = unicode(re.sub('[^\w\s-]', '', value).strip())
+    value = str(value)
+    value = unicodedata.normalize('NFKD', value)
+    value = str(re.sub('[^\w\s-]', '', value).strip())
     return value
 
 
