@@ -101,7 +101,8 @@ def main(args):
     except OSError:
         pass
 
-    df = pd.read_csv(args.input_file)
+    # 读取csv时,空白项读取为空字符串
+    df = pd.read_csv(args.input_file,na_values=str,keep_default_na=False)
     if args.tags:
         df = df[df.tags.apply(lambda x: good_tag(x, args.tags))]
 
@@ -110,7 +111,11 @@ def main(args):
         filename = '{}.{}'.format(filename, args.ext)
         with open(os.path.join(output_path, filename), 'w') as f:
             try:
-                f.write(wiki_to_md(row.text))
+                # 当条目类型为空或tw5时才进行转换
+                if (len(row.type) == 0 or row.type == 'text/vnd.tiddlywiki'):
+                    f.write(wiki_to_md(row.text))
+                else:
+                    f.write(row.text)
             except:
                 f.write('')
 
